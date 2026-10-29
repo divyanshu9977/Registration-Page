@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #container {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        gap: 10px;
+        border: 1px solid blue;
+        border-radius: 20px;
+        background-color: aqua;
+    }
+    #name, #email, #departments, #salary, button {
+        color: white;
+        width: 200px;
+        height: 30px;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: palevioletred;
+    }
+    #name::placeholder {
+        color: rgb(212, 215, 215);
+    }
+    #email::placeholder {
+        color:  rgb(212, 215, 215);
+    }
+    #salary::placeholder {
+        color:  rgb(212, 215, 215);
+    }
+</style>
+<body>
+    <div id="container">
+    <form id="form1" onsubmit="func(event)">
+        <input id="name" placeholder="Enter Your Name">
+        <br></br>
+        <input id="email" placeholder="Enter your Email">
+        <br></br>
+        <select id="departments">
+            <option value="">select</option>
+            <option valu="hr">HR</option>
+            <option valu="it">IT</option>
+            <option valu="sales">Sales</option>
+            <option valu="marketing">Marketing</option>
+        </select>
+        <br></br>
+        <input id="salary" placeholder="Enter Salry">
+        <br></br>
+        <button type="submit">Submit</button>
+    </form>
+    </div>
+    <h2 id="dispName"></h2>
+    <br></br>
+    <h2 id="dispDep"></h2>
+    <script>
+        let dispName = document.getElementById("dispName");
+        let dispDep = document.getElementById("dispDep");
+        
+
+        function func(event){
+            event.preventDefault();
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let department = document.getElementById("departments").value;
+            let salary = document.getElementById("salary").value;
+            
+            if(name.trim() !== "" && email.trim() !== "" && department != "" && isValid(salary)){
+                dispName.innerText = "";
+                dispName.innerText = name;
+                dispDep.innerText = department;
+                document.getElementById("form1").reset();
+            }else{
+                dispName.innerText = "Please provide Valid Input";
+                dispDep.innerText = "";
+            }
+        }
+
+        function isValid(n){
+            if(n >= 'a' && n <= 'z'){
+                return false;
+            }
+            return true;
+        }
+
+    </script>
+</body>
+</html>
